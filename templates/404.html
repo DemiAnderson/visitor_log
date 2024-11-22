@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Страница не найдена{% endblock %}
+
+{% block additional_styles %}
+    .error-container {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .error-code {
+        font-size: 72px;
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+    .error-message {
+        font-size: 24px;
+        color: #6c757d;
+        margin-bottom: 30px;
+    }
+    .back-home {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .back-home:hover {
+        background-color: #0056b3;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-code">404</div>
+    <div class="error-message">Страница не найдена</div>
+    <p>К сожалению, запрашиваемая страница не существует.</p>
+    <a href="/" class="back-home">Вернуться на главную</a>
+</div>
+{% endblock %} 

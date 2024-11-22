@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Система учёта посещаемости{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .nav-menu {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        .nav-menu a:hover {
+            background-color: #e9ecef;
+        }
+        .nav-menu a.active {
+            background-color: #007bff;
+            color: white;
+        }
+        {% block additional_styles %}{% endblock %}
+    </style>
+</head>
+<body>
+    <div class="nav-menu">
+        <a href="/" {% if request.url.path == "/" %}class="active"{% endif %}>Посещаемость</a>
+        <a href="/students" {% if request.url.path == "/students" %}class="active"{% endif %}>Студенты</a>
+        <a href="/dates" {% if request.url.path == "/dates" %}class="active"{% endif %}>Даты</a>
+    </div>
+
+    {% block content %}{% endblock %}
+</body>
+</html> 

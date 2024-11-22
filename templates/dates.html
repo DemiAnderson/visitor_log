@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Список дат{% endblock %}
+
+{% block additional_styles %}
+    .dates-list {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .date-item {
+        padding: 10px;
+        margin: 5px 0;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .add-date-form {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+    .add-date-form input[type="date"] {
+        padding: 8px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 200px;
+    }
+    .add-date-form button {
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .add-date-form button:hover {
+        background-color: #0056b3;
+    }
+    .delete-btn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .delete-btn:hover {
+        background-color: #c82333;
+    }
+{% endblock %}
+
+{% block content %}
+    <h1>Список дат</h1>
+    
+    <form class="add-date-form" method="POST">
+        <input type="date" 
+               name="date" 
+               required>
+        <button type="submit">Добавить дату</button>
+    </form>
+
+    <ul class="dates-list">
+        {% for date in dates %}
+        <li class="date-item">
+            <span>{{ date }}</span>
+            <button class="delete-btn" onclick="deleteDate('{{ date }}')">Удалить</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if not dates %}
+    <p>Список дат пуст</p>
+    {% endif %}
+
+    <script>
+        async function deleteDate(date) {
+            if (confirm(`Вы уверены, что хотите удалить дату ${date}?`)) {
+                try {
+                    const response = await fetch(`/dates/${encodeURIComponent(date)}`, {
+                        method: 'DELETE',
+                    });
+                    
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        const data = await response.json();
+                        alert(`Ошибка: ${data.detail}`);
+                    }
+                } catch (error) {
+                    alert('Произошла ошибка при удалении даты');
+                    console.error('Error:', error);
+                }
+            }
+        }
+    </script>
+{% endblock %} 
