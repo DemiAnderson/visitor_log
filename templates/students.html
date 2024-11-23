@@ -2,58 +2,6 @@
 
 {% block title %}Список студентов{% endblock %}
 
-{% block additional_styles %}
-    .student-list {
-        list-style-type: none;
-        padding: 0;
-        margin-bottom: 20px;
-    }
-    .student-item {
-        padding: 10px;
-        margin: 5px 0;
-        background-color: #f5f5f5;
-        border-radius: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .add-student-form {
-        margin-bottom: 20px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-    }
-    .add-student-form input[type="text"] {
-        padding: 8px;
-        margin-right: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        width: 200px;
-    }
-    .add-student-form button {
-        padding: 8px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .add-student-form button:hover {
-        background-color: #0056b3;
-    }
-    .delete-btn {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .delete-btn:hover {
-        background-color: #c82333;
-    }
-{% endblock %}
-
 {% block content %}
     <h1>Список студентов</h1>
     
@@ -87,7 +35,6 @@
                     });
                     
                     if (response.ok) {
-                        // Перезагружаем страницу после успешного удаления
                         window.location.reload();
                     } else {
                         const data = await response.json();

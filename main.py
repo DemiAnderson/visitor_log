@@ -6,12 +6,16 @@ from datetime import datetime
 from typing import Dict, List
 from starlette import status as http_status
 from enum import Enum
+from pathlib import Path
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
+# Определяем путь к статическим файлам
+static_path = Path(__file__).parent / "static"
+
 # Монтируем статические файлы
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
 
 # Простое хранилище данных в памяти
 class DataStore:
@@ -151,7 +155,7 @@ async def update_status(
 
     # Обновляем статус
     db.attendance[date][student_name] = status
-    print(f"Статус успешно обновлен")  # отладка
+    print("Статус успешно обновлен")  # отладка
 
     return RedirectResponse(
         url="/",

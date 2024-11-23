@@ -1,61 +1,8 @@
 {% extends "base.html" %}
 
-{% block additional_styles %}
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: center;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .none { background-color: #ffffff; }
-    .online { background-color: #90EE90; }
-    .offline { background-color: #87CEEB; }
-    .skipped { background-color: #FFB6C1; }
-    .date-cell {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px;
-    }
-    .delete-btn {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        padding: 2px 6px;
-        border-radius: 3px;
-        cursor: pointer;
-        font-size: 0.8em;
-    }
-    .delete-btn:hover {
-        background-color: #c82333;
-    }
-    .system-controls {
-        margin-bottom: 20px;
-    }
-    .reset-btn {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-    }
-    .reset-btn:hover {
-        background-color: #c82333;
-    }
-{% endblock %}
-
 {% block content %}
     <h1>Учёт посещаемости</h1>
     
-    <!-- Добавляем форму сброса -->
     <div class="system-controls">
         <form method="POST" 
               action="/system/reset/" 
